@@ -17,7 +17,7 @@ from typing import Any
 import pandas as pd
 import yfinance as yf
 from mcp.server.fastmcp import FastMCP
-
+from starlette.middleware.cors import CORSMiddleware
 # ─────────────────────────────────────────────
 # Suppress stdout noise
 # ─────────────────────────────────────────────
@@ -181,5 +181,17 @@ def get_crypto(
 # Entry Point
 # ══════════════════════════════════════════════
 if __name__ == "__main__":
+    import uvicorn
+    from starlette.middleware.cors import CORSMiddleware
+
     print(f"🚀 efin-data MCP Server running on port {port}", file=sys.stderr)
-    mcp.run(transport="sse")
+    
+    app = mcp.sse_app()
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+    uvicorn.run(app, host="0.0.0.0", port=port)
