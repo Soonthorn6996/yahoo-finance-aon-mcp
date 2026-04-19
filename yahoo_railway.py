@@ -7,7 +7,7 @@ Deploy on : Railway, Render, or any cloud platform
 Requirements:
   pip install mcp yfinance pandas starlette uvicorn
 """
-
+import os 
 import json
 import logging
 import sys
