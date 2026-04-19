@@ -182,4 +182,4 @@ def get_crypto(
 # ══════════════════════════════════════════════
 if __name__ == "__main__":
     print(f"🚀 efin-data MCP Server running on port {port}", file=sys.stderr)
-    mcp.run()
+    mcp.run(transport="streamable-http")
