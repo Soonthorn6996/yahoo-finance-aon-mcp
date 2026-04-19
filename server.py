@@ -28,7 +28,7 @@ for name in ("yfinance", "peewee", "urllib3", "httpx"):
 
 # ─────────────────────────────────────────────
 port = int(os.environ.get("PORT", 8080))
-mcp  = FastMCP("yahoo-finance", port=port)
+mcp  = FastMCP("efin-data", port=port)
 # ─────────────────────────────────────────────
 
 
@@ -181,5 +181,5 @@ def get_crypto(
 # Entry Point
 # ══════════════════════════════════════════════
 if __name__ == "__main__":
-    print(f"🚀 Yahoo Finance MCP Server running on port {port}", file=sys.stderr)
+    print(f"🚀 efin-data MCP Server running on port {port}", file=sys.stderr)
     mcp.run(transport="sse")
