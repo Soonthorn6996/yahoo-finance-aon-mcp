@@ -1,5 +1,6 @@
-mcp
+mcp==1.2.0
 yfinance
 pandas
-starlette
+starlette==0.41.0
 uvicorn
+httpx
