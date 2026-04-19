@@ -181,12 +181,13 @@ def get_crypto(
 # Entry Point
 # ══════════════════════════════════════════════
 if __name__ == "__main__":
+    import sys
     import uvicorn
     from starlette.middleware.cors import CORSMiddleware
 
     print(f"🚀 efin-data MCP Server running on port {port}", file=sys.stderr)
-    
-    app = mcp.sse_app()
+
+    app = mcp.streamable_http_app()
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],
@@ -194,4 +195,5 @@ if __name__ == "__main__":
         allow_methods=["*"],
         allow_headers=["*"],
     )
+
     uvicorn.run(app, host="0.0.0.0", port=port)
