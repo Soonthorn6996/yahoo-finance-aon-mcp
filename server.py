@@ -181,31 +181,5 @@ def get_crypto(
 # Entry Point
 # ══════════════════════════════════════════════
 if __name__ == "__main__":
-    import uvicorn
-    from starlette.applications import Starlette
-    from starlette.responses import JSONResponse
-    from starlette.routing import Route, Mount
-    from starlette.middleware.cors import CORSMiddleware
-
-    async def health(request):
-        return JSONResponse({"ok": True})
-
-    mcp_app = mcp.streamable_http_app()
-
-    app = Starlette(
-        routes=[
-            Route("/health", health),
-            Mount("/mcp", app=mcp_app),
-        ]
-    )
-
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=["*"],
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
-
     print(f"🚀 efin-data MCP Server running on port {port}", file=sys.stderr)
-    uvicorn.run(app, host="0.0.0.0", port=port)
+    mcp.run()
